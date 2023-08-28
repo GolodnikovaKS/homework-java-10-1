@@ -7,8 +7,8 @@ public class RadioTest {
 
     /*---------setStationTests----------*/
     @Test
-    void setStationTestOnePossible() {
-        Radio radio = new Radio();
+    public void setStationTestOnePossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(4);
 
         int actual = radio.getCurrentStation();
@@ -17,8 +17,8 @@ public class RadioTest {
     }
 
     @Test
-    void setStationTestMuchLessPossible() {
-        Radio radio = new Radio();
+    public void setStationTestMuchLessPossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(-10);
 
         int actual = radio.getCurrentStation();
@@ -27,8 +27,8 @@ public class RadioTest {
     }
 
     @Test
-    void setStationTestLessPossible() {
-        Radio radio = new Radio();
+    public void setStationTestLessPossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(-1);
 
         int actual = radio.getCurrentStation();
@@ -37,8 +37,8 @@ public class RadioTest {
     }
 
     @Test
-    void setStationTestMinPossible() {
-        Radio radio = new Radio();
+    public void setStationTestMinPossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(0);
 
         int actual = radio.getCurrentStation();
@@ -47,19 +47,19 @@ public class RadioTest {
     }
 
     @Test
-    void setStationTestMaxPossible() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+    public void setStationTestMaxPossible() {
+        Radio radio = new Radio(50);
+        radio.setCurrentStation(radio.getMaxStation());
 
         int actual = radio.getCurrentStation();
-        int expected = 9;
+        int expected = radio.getMaxStation();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    void setStationTestMorePossible() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(10);
+    public void setStationTestMorePossible() {
+        Radio radio = new Radio(50);
+        radio.setCurrentStation(radio.getMaxStation() + 1);
 
         int actual = radio.getCurrentStation();
         int expected = 0;
@@ -67,9 +67,9 @@ public class RadioTest {
     }
 
     @Test
-    void setStationTestMuchMorePossible() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(15);
+    public void setStationTestMuchMorePossible() {
+        Radio radio = new Radio(50);
+        radio.setCurrentStation(radio.getMaxStation() + 15);
 
         int actual = radio.getCurrentStation();
         int expected = 0;
@@ -78,8 +78,8 @@ public class RadioTest {
 
     /*---------setNextStationTests----------*/
     @Test
-    void setNextStationTestOnePossible() {
-        Radio radio = new Radio();
+    public void setNextStationTestOnePossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(5);
         radio.setNextStation();
         int actual = radio.getCurrentStation();
@@ -88,8 +88,8 @@ public class RadioTest {
     }
 
     @Test
-    void setNextStationTestMinPossible() {
-        Radio radio = new Radio();
+    public void setNextStationTestMinPossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(0);
         radio.setNextStation();
         int actual = radio.getCurrentStation();
@@ -98,9 +98,9 @@ public class RadioTest {
     }
 
     @Test
-    void setNextStationTestMaxPossible() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+    public void setNextStationTestMaxPossible() {
+        Radio radio = new Radio(50);
+        radio.setCurrentStation(radio.getMaxStation());
         radio.setNextStation();
         int actual = radio.getCurrentStation();
         int expected = 0;
@@ -109,8 +109,8 @@ public class RadioTest {
 
     /*---------setPrevStationTests----------*/
     @Test
-    void setPrevStationTestOnePossible() {
-        Radio radio = new Radio();
+    public void setPrevStationTestOnePossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(5);
         radio.setPrevStation();
         int actual = radio.getCurrentStation();
@@ -119,28 +119,28 @@ public class RadioTest {
     }
 
     @Test
-    void setPrevStationTestMinPossible() {
-        Radio radio = new Radio();
+    public void setPrevStationTestMinPossible() {
+        Radio radio = new Radio(50);
         radio.setCurrentStation(0);
         radio.setPrevStation();
         int actual = radio.getCurrentStation();
-        int expected = 9;
+        int expected = radio.getMaxStation();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    void setPrevStationTestMaxPossible() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+    public void setPrevStationTestMaxPossible() {
+        Radio radio = new Radio(50);
+        radio.setCurrentStation(radio.getMaxStation());
         radio.setPrevStation();
         int actual = radio.getCurrentStation();
-        int expected = 8;
+        int expected = radio.getMaxStation() - 1;
         Assertions.assertEquals(expected, actual);
     }
 
     /*---------setVolumeTests----------*/
     @Test
-    void setVolumeTestOnePossible() {
+    public void setVolumeTestOnePossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(10);
 
@@ -150,7 +150,7 @@ public class RadioTest {
     }
 
     @Test
-    void setVolumeTestMinPossible() {
+    public void setVolumeTestMinPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(0);
 
@@ -160,7 +160,7 @@ public class RadioTest {
     }
 
     @Test
-    void setVolumeTestMaxPossible() {
+    public void setVolumeTestMaxPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(100);
 
@@ -170,7 +170,7 @@ public class RadioTest {
     }
 
     @Test
-    void setVolumeTestLessPossible() {
+    public void setVolumeTestLessPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(-1);
 
@@ -180,7 +180,7 @@ public class RadioTest {
     }
 
     @Test
-    void setVolumeTestMuchLessPossible() {
+    public void setVolumeTestMuchLessPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(-10);
 
@@ -190,7 +190,7 @@ public class RadioTest {
     }
 
     @Test
-    void setVolumeTestMorePossible() {
+    public void setVolumeTestMorePossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(101);
 
@@ -200,7 +200,7 @@ public class RadioTest {
     }
 
     @Test
-    void setVolumeTestMuchMorePossible() {
+    public void setVolumeTestMuchMorePossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(120);
 
@@ -211,7 +211,7 @@ public class RadioTest {
 
     /*---------increaseVolumeTests----------*/
     @Test
-    void increaseVolumeTestOnePossible() {
+    public void increaseVolumeTestOnePossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(50);
         radio.increaseVolume();
@@ -221,7 +221,7 @@ public class RadioTest {
     }
 
     @Test
-    void increaseVolumeTestMinPossible() {
+    public void increaseVolumeTestMinPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(0);
         radio.increaseVolume();
@@ -231,7 +231,7 @@ public class RadioTest {
     }
 
     @Test
-    void increaseVolumeTestMaxPossible() {
+    public void increaseVolumeTestMaxPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(100);
         radio.increaseVolume();
@@ -242,7 +242,7 @@ public class RadioTest {
 
     /*---------decreaseVolumeTests----------*/
     @Test
-    void decreaseVolumeTestOnePossible() {
+    public void decreaseVolumeTestOnePossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(50);
         radio.decreaseVolume();
@@ -252,7 +252,7 @@ public class RadioTest {
     }
 
     @Test
-    void decreaseVolumeTestMinPossible() {
+    public void decreaseVolumeTestMinPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(0);
         radio.decreaseVolume();
@@ -262,7 +262,7 @@ public class RadioTest {
     }
 
     @Test
-    void decreaseVolumeTestMaxPossible() {
+    public void decreaseVolumeTestMaxPossible() {
         Radio radio = new Radio();
         radio.setCurrentVolume(100);
         radio.decreaseVolume();
